@@ -1,0 +1,2 @@
+webpackJsonp([6],{T5pX:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n2\n  ")])},staticRenderFns:[]};var i=t("C7Lr")({name:"friends-page"},r,!1,function(e){t("ciYQ")},null,null);n.default=i.exports},ciYQ:function(e,n){}});
+//# sourceMappingURL=6.f3ae1235e67ebe040f45.js.map

@@ -1,0 +1,2 @@
+webpackJsonp([2],{"/EI/":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n2\n  ")])},staticRenderFns:[]};var s=t("C7Lr")({name:"singers"},r,!1,function(e){t("fsmi")},null,null);n.default=s.exports},fsmi:function(e,n){}});
+//# sourceMappingURL=2.a53adcb14557305a85e1.js.map
