@@ -7,7 +7,7 @@ function spliceUrl(baseUrl, dataObj){
 function spliceDataObj(dataObj) {
   let str = ''
   for(x in dataObj) {
-    str += `&${x}=${dataObj[x]}`
+    str += `&${encodeURIComponent(x)}=${encodeURIComponent(dataObj[x])}`
   }
   return str
 }
