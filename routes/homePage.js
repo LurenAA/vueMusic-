@@ -5,6 +5,7 @@ let homePageUrl = require('../api/homePage')
 let homePageMvUrl = require('../api/homePageMvList')
 let mvPagesUrl = require('../api/mvPage')
 let newSong = require('../api/newSong')
+let mvPage = require('../api/homeMv')
 
 let f = function(x) {
   return new Promise(function (resolve, reject) {
@@ -40,7 +41,9 @@ router.get('/recom',handle(homePageUrl))
 router.get('/song',function(req, res, next) {
   f(newSong(req.query.mid))
   .then(json => {
-    res.send(json)
+    let cont = JSON.parse(json)
+    res.set('Content-Type', 'text/plain');
+    res.send(cont['req_0'].data.sip[0] + cont['req_0'].data.midurlinfo[0].purl)
   })
   .catch(e => {
     res.send('err')
@@ -57,4 +60,19 @@ router.get('/mv',function(req, res, next) {
   })  
 })
 
+router.get('/homeMv', function (req,res,next) {
+  let x
+  if(req.query['area_id'] && req.query['version_id']) {
+    x = mvPage(req.query['area_id'],req.query['version_id'])
+  } else {
+    x = mvPage()
+  }
+  f(x)
+  .then(json => {
+    res.send(json)
+  })
+  .catch(e => {
+    res.send('err')
+  })  
+})
 module.exports = router;
