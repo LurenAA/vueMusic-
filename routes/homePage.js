@@ -6,10 +6,16 @@ let homePageMvUrl = require('../api/homePageMvList')
 let mvPagesUrl = require('../api/mvPage')
 let newSong = require('../api/newSong')
 let mvPage = require('../api/homeMv')
+let mvPageTag = require('../api/homeMvTag')
+let distPage = require('../api/distPage')
 
 let f = function(x) {
   return new Promise(function (resolve, reject) {
-    https.get(x,function(data) {
+    https.get(x,{
+      headers:{
+        'referer':`https://y.qq.com/n/yqq/playlist/${x}.html`
+      }
+    },function(data) {
       var str="";
       data.on("data",function(chunk){
         str+=chunk;
@@ -36,6 +42,7 @@ let handle = function(x) {
   }
 }
 
+router.get('/homeMvTag', handle(mvPageTag))
 router.get('/mvlist',handle(homePageMvUrl))
 router.get('/recom',handle(homePageUrl))
 router.get('/song',function(req, res, next) {
@@ -52,6 +59,16 @@ router.get('/song',function(req, res, next) {
 
 router.get('/mv',function(req, res, next) {
   f(mvPagesUrl(req.query.vid))
+  .then(json => {
+    res.send(json)
+  })
+  .catch(e => {
+    res.send('err')
+  })  
+})
+
+router.get('/dist',function(req, res, next) {
+  f(distPage(req.query.vid))
   .then(json => {
     res.send(json)
   })
