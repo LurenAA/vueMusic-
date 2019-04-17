@@ -9,6 +9,7 @@ let mvPage = require('../api/homeMv')
 let mvPageTag = require('../api/homeMvTag')
 let distPage = require('../api/distPage')
 let getSingersPage = require('../api/getSingersPage.js')
+let singersPage = require('../api/singerDetail')
 
 let f = function(x) {
   return new Promise(function (resolve, reject) {
@@ -108,4 +109,13 @@ router.get('/singerslist',function(req, res, next) {
   })  
 })
 
+router.get('/singerdetail',function(req, res, next) {
+  f(singersPage(req.query.vid))
+  .then(json => {
+    res.send(json)
+  })
+  .catch(e => {
+    res.send('err')
+  })  
+})
 module.exports = router;
